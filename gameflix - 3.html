@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamerflix - Login de Teste</title>
+    <style>
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #000; color: #fff;
+            overflow-x: hidden;
+        }
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.9) 100%),
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1350&q=80'); 
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 0 20px;
+        }
+        header {
+            position: absolute; top: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 50px; box-sizing: border-box;
+        }
+        .logo { color: #e50914; font-size: 2.2rem; font-weight: bold; }
+        .hero-content h1 { font-size: 3.5rem; max-width: 900px; margin-bottom: 0.5rem; font-weight: 900; }
+        .hero-content p { font-size: 1.6rem; margin-bottom: 2rem; }
+        .hero-content h3 { font-weight: 400; font-size: 1.2rem; margin-bottom: 1.5rem; }
+        
+        .email-form { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .email-form input {
+            padding: 20px; width: 450px;
+            border: 1px solid rgba(255,255,255,0.5);
+            background: rgba(0, 0, 0, 0.7); color: #fff;
+            border-radius: 4px; font-size: 1rem;
+        }
+        .btn-cta {
+            background-color: #e50914; color: white;
+            padding: 20px 30px; font-size: 1.5rem;
+            border: none; border-radius: 4px;
+            cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+        .btn-cta:hover { background-color: #b9090b; }
+
+        /* Estilo para mensagem de erro caso o login esteja errado */
+        #msgErro {
+            color: #ffa00a;
+            margin-top: 15px;
+            display: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 740px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .email-form input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <header>
+            <div class="logo">GAMERFLIX</div>
+            <button style="background: #e50914; color: white; border: none; padding: 7px 15px; border-radius: 3px; font-weight: bold; cursor: pointer;">Entrar</button>
+        </header>
+
+        <div class="hero-content">
+            <h1>os melhores jogos do mundo em um so lugar</h1>
+            <p>Acesse os títulos mais épicos do PC e consoles.</p>
+            <h3>coloque abaixo seu loguin de teste</h3>
+            
+            <form class="email-form" id="loginForm">
+                <input type="text" id="userLogin" placeholder="Seu login" required>
+                <button type="submit" class="btn-cta">Vamos lá ></button>
+            </form>
+            <div id="msgErro">Login incorreto. Tente novamente!</div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Impede a página de recarregar
+            
+            const loginDigitado = document.getElementById('userLogin').value;
+            const loginCorreto = "@testegratisgameflix";
+            const erroDisplay = document.getElementById('msgErro');
+            
+            if(loginDigitado === loginCorreto) {
+                // REDIRECIONAMENTO AQUI
+                // Se for outra página no seu PC, coloque o nome do arquivo, ex: "pagina2.html"
+                // Se for um site externo, coloque o link completo, ex: "https://google.com"
+                window.location.href = "proxima_pagina.html"; 
+            } else {
+                // Se o login estiver errado, mostra o aviso
+                erroDisplay.style.display = "block";
+                document.getElementById('userLogin').style.borderColor = "#ffa00a";
+            }
+        });
+    </script>
+
+</body>
+</html>
