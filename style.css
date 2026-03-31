@@ -1210,12 +1210,19 @@ body.modal-open { overflow: hidden; }
   display: none;
 }
 
-/* Ajuste para o GAMEFLIX - Remove a tela preta sobre o vídeo */
+/* RESOLUÇÃO DA TELA PRETA NO GAMEFLIX */
+
+.game-modal-container {
+    position: relative;
+    background: #141414; /* Cor de fundo do modal */
+    z-index: 100;
+}
+
 .modal-hero {
     position: relative;
     width: 100%;
-    height: 0;
-    padding-bottom: 56.25%; /* Isso cria o espaço 16:9 do YouTube */
+    /* Isso garante que o espaço do vídeo seja reservado corretamente */
+    aspect-ratio: 16 / 9; 
     background: #000;
     overflow: hidden;
 }
@@ -1226,18 +1233,20 @@ body.modal-open { overflow: hidden; }
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Garante que o vídeo fique na frente */
+    /* O segredo: z-index alto e garantir que não haja nada na frente */
+    z-index: 10; 
     border: none;
+    display: block !important;
 }
 
+/* Garante que o botão de fechar não fique escondido */
 .close-modal {
     position: absolute;
     right: 20px;
     top: 20px;
-    z-index: 100; /* Garante que o X de fechar não suma atrás do vídeo */
+    z-index: 1000; 
     cursor: pointer;
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+    color: #fff;
+    font-size: 40px;
+    line-height: 1;
 }
