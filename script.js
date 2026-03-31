@@ -208,25 +208,62 @@ window.addEventListener('click', function(event) {
     if (event.target === modalNetflix) closeModal();
 });
 
+/* --- SISTEMA DE POPUP DE VÍDEO (DEFINITIVO) --- */
+
 function openGamePage(title, description, videoId) {
     const modal = document.getElementById('gamePageModal');
     const videoContainer = document.getElementById('modalVideo');
-    
-    // Preenche o título
-    if(document.getElementById('modalTitle')) {
-        document.getElementById('modalTitle').innerText = title;
+    const modalTitle = document.getElementById('modalTitle');
+
+    if (!modal || !videoContainer) {
+        console.error("Erro: Elementos do modal não encontrados no HTML!");
+        return;
     }
 
-    // INJEÇÃO BLINDADA: Isso limpa e recria o iframe do zero
+    // 1. Atualiza o Título
+    if (modalTitle) modalTitle.innerText = title;
+
+    // 2. Limpa e Insere o Vídeo (Usando link que funciona em qualquer lugar)
+    const cleanId = videoId.trim();
     videoContainer.innerHTML = `
         <iframe 
-            src="https://www.youtube.com/embed/${videoId.trim()}?autoplay=1&mute=0&rel=0&controls=1" 
-            style="width: 100%; height: 100%; border: none;" 
+            width="100%" 
+            height="100%" 
+            src="https://www.youtube.com/embed/${cleanId}?autoplay=1&rel=0&modestbranding=1" 
+            frameborder="0" 
             allow="autoplay; encrypted-media; picture-in-picture" 
-            allowfullscreen>
+            allowfullscreen
+            style="border: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
         </iframe>`;
 
-    // Mostra o modal
+    // 3. Exibe o Modal
     modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden'; 
+    document.body.style.overflow = 'hidden'; // Trava o scroll do fundo
 }
+
+function closeGamePage() {
+    const modal = document.getElementById('gamePageModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.getElementById('modalVideo').innerHTML = ""; // Para o som do vídeo
+        document.body.style.overflow = 'auto'; // Devolve o scroll
+    }
+}
+
+/* --- GERENCIADOR DE CLIQUES (O QUE FAZ O CARD FUNCIONAR) --- */
+document.addEventListener('click', function(e) {
+    const card = e.target.closest('.game-card, .card-container');
+    
+    if (card) {
+        // Se o card já tem onclick manual (como o seu Resident Evil), não faz nada aqui
+        if (card.hasAttribute('onclick')) return; 
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const title = card.querySelector('img')?.getAttribute('alt') || "Jogo GAMEFLIX";
+        const videoId = card.getAttribute('data-video') || "quEnu8EWL3Q"; 
+        
+        openGamePage(title, "Disponível na sua assinatura.", videoId);
+    }
+}, true);
