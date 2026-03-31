@@ -178,7 +178,7 @@ if (loginForm) {
     const emailInput = document.getElementById('user-email').value;
     const passwordInput = document.getElementById('user-password').value;
 
-    const emailCorreto = "t@gameflix.com";
+    const emailCorreto = "testeratis@gameflix.com";
     const senhaCorreta = "a";
 
     if (emailInput === emailCorreto && passwordInput === senhaCorreta) {
