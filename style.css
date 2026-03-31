@@ -1210,43 +1210,46 @@ body.modal-open { overflow: hidden; }
   display: none;
 }
 
-/* RESOLUÇÃO DA TELA PRETA NO GAMEFLIX */
+/* --- SOLUÇÃO DEFINITIVA PARA O VÍDEO DO GAMEFLIX --- */
 
-.game-modal-container {
-    position: relative;
-    background: #141414; /* Cor de fundo do modal */
-    z-index: 100;
+/* 1. O fundo do modal deve estar atrás de tudo */
+.game-modal-overlay {
+    z-index: 9999 !important; /* Garante que o modal saia da frente de outros elementos do site */
 }
 
+/* 2. O container do conteúdo */
+.game-modal-container {
+    position: relative;
+    z-index: 10000 !important;
+}
+
+/* 3. A DIV que envolve o vídeo (O PROBLEMA DEVE ESTAR AQUI) */
 .modal-hero {
     position: relative;
     width: 100%;
-    /* Isso garante que o espaço do vídeo seja reservado corretamente */
-    aspect-ratio: 16 / 9; 
-    background: #000;
-    overflow: hidden;
+    min-height: 300px; /* Garante que ela tenha altura */
+    aspect-ratio: 16 / 9; /* Mantém o formato de vídeo */
+    background: transparent !important; /* Remove qualquer fundo preto que possa estar por cima */
+    overflow: visible !important; 
 }
 
+/* 4. O Vídeo em si */
 #gameVideo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* O segredo: z-index alto e garantir que não haja nada na frente */
-    z-index: 10; 
-    border: none;
+    position: relative;
     display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 10001 !important; /* Coloca o vídeo na camada mais alta de todas */
+    border: none;
 }
 
-/* Garante que o botão de fechar não fique escondido */
+/* 5. O botão de fechar */
 .close-modal {
     position: absolute;
-    right: 20px;
-    top: 20px;
-    z-index: 1000; 
+    top: 15px;
+    right: 15px;
+    z-index: 10002 !important; /* O "X" fica acima do vídeo */
+    color: white;
+    font-size: 35px;
     cursor: pointer;
-    color: #fff;
-    font-size: 40px;
-    line-height: 1;
 }
