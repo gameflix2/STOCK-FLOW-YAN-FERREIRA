@@ -1,0 +1,16 @@
+{
+  "name": "StockFlow Controle",
+  "short_name": "StockFlow",
+  "description": "Controle de estoque futurista",
+  "start_url": "estoque_futurista.html",
+  "display": "standalone",
+  "background_color": "#050510",
+  "theme_color": "#00f5ff",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/4076/4076432.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
