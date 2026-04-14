@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StockFlow — Controle de Estoque</title>
 <style>
+  
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
     --neon:#00f5ff;--neon2:#bf00ff;--neon3:#00ff88;--neon4:#ff6b35;
@@ -221,6 +225,36 @@
   }
   .glow-line{height:1px;background:linear-gradient(90deg,transparent,var(--neon),var(--neon2),transparent);margin:20px 0;opacity:0.3}
   ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,245,255,0.2);border-radius:3px}
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StockFlow — Controle de Estoque</title>
+<style>
+  /* Ajustes para Celular */
+@media (max-width: 768px) {
+  .dashboard { 
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas nos cards de status */
+    gap: 10px;
+  }
+  .main { padding: 15px; }
+  .table-wrap { overflow-x: auto; } /* Permite deslizar a tabela pro lado */
+  .btn span { display: none; } /* Esconde o ícone nos botões para economizar espaço */
+}
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --neon:#00f5ff;--neon2:#bf00ff;--neon3:#00ff88;--neon4:#ff6b35;
+    --glass:rgba(255,255,255,0.05);--glass2:rgba(255,255,255,0.08);
+    --border-glass:rgba(255,255,255,0.12);--border-neon:rgba(0,245,255,0.4);
+    --bg:#050510;--bg2:#0a0a1e;--bg3:#0d0d2b;
+    --text:#e8eeff;--text2:#8892b0;--text3:#ccd6f6
+  }
+  body{
+    font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);
+    min-height:100vh;overflow-x:hidden;
+    background-image:radial-gradient(ellipse at 20% 50%,rgba(0,245,255,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse at 80% 20%,rgba(191,0,255,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse at 50% 80%,rgba(0,255,136,0.04) 0%,transparent 60%)
+  }
+
 </style>
 
 <div class="particles" id="particles"></div>
